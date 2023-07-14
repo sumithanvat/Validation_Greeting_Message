@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class MessageController {
     @Autowired
@@ -25,6 +27,10 @@ public class MessageController {
     public ResponseEntity<ResponceDTO> addMessage(@RequestBody MessageDTO messageDTO){
         ResponceDTO responceDTO=new ResponceDTO("Data added successfully",messageService.addMessage(messageDTO));
         return new ResponseEntity<>(responceDTO,HttpStatus.CREATED);
+    }
+    @GetMapping("/getAll")
+    public List<Message> getAllMessages() {
+        return messageService.getAllMessages();
     }
 
 

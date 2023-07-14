@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Service
 public class MessageService {
     @Autowired
@@ -18,5 +20,8 @@ public class MessageService {
         Message messageData=new Message(messageDTO);
         return messageRepo.save(messageData);
 
+    }
+    public List<Message> getAllMessages() {
+        return messageRepo.findAll();
     }
 }
