@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class MessageController {
@@ -39,6 +40,15 @@ public class MessageController {
     public ResponseEntity<ResponceDTO> updateMessage(@PathVariable long id, @RequestBody MessageDTO messageDTO) {
         ResponceDTO responseDTO = new ResponceDTO("data updated",messageService.updateMessage(id, messageDTO));
         return  new ResponseEntity<>(responseDTO,HttpStatus.OK);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteMessage(@PathVariable long id) {
+        Optional<Message> messageData = messageRepo.findById(id);
+        if (messageData.isPresent()) {
+            messageRepo.deleteById(id);
+            return ResponseEntity.ok("Message deleted successfully");
+        }
+        return ResponseEntity.notFound().build();
     }
 
 
