@@ -18,14 +18,25 @@ public class MessageService {
 
 
     public Message addMessage(MessageDTO messageDTO) {
-        Message messageData=new Message(messageDTO);
+        Message messageData = new Message(messageDTO);
         return messageRepo.save(messageData);
 
     }
+
     public List<Message> getAllMessages() {
         return messageRepo.findAll();
     }
-    public Optional<Message> getById(long id){
+
+    public Optional<Message> getById(long id) {
         return messageRepo.findById(id);
+
+    }
+    public Message updateMessage (long id, MessageDTO messageDTO) {
+        Optional<Message> messageData = getById(id);
+        if(messageData.isPresent()){
+            messageData.get().updateMessage(messageDTO);
+            return messageRepo.save(messageData.get());
+        }
+        return null;
     }
 }

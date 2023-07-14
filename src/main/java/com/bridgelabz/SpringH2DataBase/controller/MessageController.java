@@ -35,6 +35,11 @@ public class MessageController {
         ResponceDTO responceDTO=new ResponceDTO("Data Fetch successfully",messageService.getById(id));
         return new ResponseEntity<>(responceDTO,HttpStatus.OK);
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ResponceDTO> updateMessage(@PathVariable long id, @RequestBody MessageDTO messageDTO) {
+        ResponceDTO responseDTO = new ResponceDTO("data updated",messageService.updateMessage(id, messageDTO));
+        return  new ResponseEntity<>(responseDTO,HttpStatus.OK);
+    }
 
 
 

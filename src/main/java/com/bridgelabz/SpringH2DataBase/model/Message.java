@@ -22,13 +22,16 @@ public class Message {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public Message(MessageDTO messageDTO) {
-        this.title= messageDTO.title;
-        this.author= messageDTO.author;
-        this.startDate=messageDTO.StartDate;
-        this.endDate=messageDTO.endDate;
-    }
 
+    public Message(MessageDTO messageDTO) {
+        this.updateMessage(messageDTO);
+    }
+    public void updateMessage(MessageDTO messageDTO){
+        this.title = messageDTO.title;
+        this.author = messageDTO.author;
+        this.endDate = messageDTO.endDate;
+        this.startDate = messageDTO.StartDate;
+    }
 
     public String getTitle() {
         return title;
