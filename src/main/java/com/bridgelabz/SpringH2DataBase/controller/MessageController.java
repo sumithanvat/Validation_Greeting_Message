@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +28,14 @@ public class MessageController {
     @GetMapping("/getAll")
     public List<Message> getAllMessages() {
         return messageService.getAllMessages();
+
     }
+    @GetMapping("/getbyid/{id}")
+    public ResponseEntity<ResponceDTO> getById(@PathVariable long id){
+        ResponceDTO responceDTO=new ResponceDTO("Data Fetch successfully",messageService.getById(id));
+        return new ResponseEntity<>(responceDTO,HttpStatus.OK);
+    }
+
 
 
 

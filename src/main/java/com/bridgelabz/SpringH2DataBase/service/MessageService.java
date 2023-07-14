@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MessageService {
@@ -23,5 +24,8 @@ public class MessageService {
     }
     public List<Message> getAllMessages() {
         return messageRepo.findAll();
+    }
+    public Optional<Message> getById(long id){
+        return messageRepo.findById(id);
     }
 }
