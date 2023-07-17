@@ -5,6 +5,7 @@ import com.bridgelabz.SpringH2DataBase.dto.ResponceDTO;
 import com.bridgelabz.SpringH2DataBase.model.Message;
 import com.bridgelabz.SpringH2DataBase.repository.MessageRepo;
 import com.bridgelabz.SpringH2DataBase.service.MessageService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class MessageController {
     private MessageService messageService;
 
     @PostMapping ("/add")
-    public ResponseEntity<ResponceDTO> addMessage(@RequestBody MessageDTO messageDTO){
+    public ResponseEntity<ResponceDTO> addMessage(@Valid @RequestBody MessageDTO messageDTO){
         ResponceDTO responceDTO=new ResponceDTO("Data added successfully",messageService.addMessage(messageDTO));
         return new ResponseEntity<>(responceDTO,HttpStatus.CREATED);
     }
